@@ -45,5 +45,13 @@ cp -r "$SCRIPT_DIR/config/waybar"    "$HOME/.config/"
 cp -r "$SCRIPT_DIR/config/foot"      "$HOME/.config/"
 cp -r "$SCRIPT_DIR/config/fastfetch" "$HOME/.config/"
 
+# Bloque de prompt/aliases hacker en ~/.bashrc (sin duplicar)
+if ! grep -q "HYPRLAND HACKER CONFIG" "$HOME/.bashrc" 2>/dev/null; then
+  cat "$SCRIPT_DIR/config/bash/bashrc" >> "$HOME/.bashrc"
+  log "Añadido prompt hacker y aliases a ~/.bashrc"
+else
+  warn "~/.bashrc ya contiene el bloque hacker, no se duplica"
+fi
+
 log "Listo. Reinicia Hyprland o ejecuta: hyprctl reload && killall waybar; waybar &"
 log "Backup disponible en: $BACKUP"
