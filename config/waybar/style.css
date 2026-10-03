@@ -1,6 +1,6 @@
 * {
   font-family: "JetBrainsMono Nerd Font", monospace;
-  font-size: 9px;
+  font-size: 8px;
   border: none;
   border-radius: 10px;
   min-height: 0;
@@ -24,7 +24,7 @@
   color: #3f6f5a;
   padding: 0 8px;
   border-radius: 8px;
-  margin: 4px 2px;
+  margin: 2px 1px;
 }
 
 #workspaces button.active {
@@ -44,8 +44,8 @@
 #cpu, #memory, #disk, #custom-cputemp, #custom-gpuusage,
 #custom-gputemp, #custom-swap, #custom-wan, #custom-lan,
 #custom-tor, #custom-vpn {
-  padding: 0 10px;
-  margin: 4px 2px;
+  padding: 0 6px;
+  margin: 2px 1px;
   color: #00ff9f;
 }
 

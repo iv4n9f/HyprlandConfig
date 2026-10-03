@@ -3,9 +3,9 @@
     "name": "top",
     "layer": "top",
     "position": "top",
-    "height": 34,
-    "margin": "8 12 0 12",
-    "modules-left": ["custom/userhost", "clock", "clock#cet"],
+    "height": 26,
+    "margin": "4 8 0 8",
+    "modules-left": ["custom/userhost", "custom/hostname", "clock", "clock#cet"],
     "modules-center": ["hyprland/workspaces"],
     "modules-right": ["mpris", "hyprland/language", "custom/server", "custom/menu"],
 
@@ -15,19 +15,17 @@
       "max-length": 40
     },
     "hyprland/language": {
-      "format": "󰌌 {}",
-      "format-en": "󰌌 en",
-      "format-es": "󰌌 es"
+      "format": "󰌌 {short}"
     },
     "custom/server": {
       "exec": "~/.config/waybar/scripts/server.sh",
       "interval": 30,
-      "tooltip": false
+      "tooltip": true
     },
     "custom/menu": {
       "format": "󰀻 MENU",
       "on-click": "hyprlauncher",
-      "tooltip": false
+      "tooltip": true
     },
     "hyprland/workspaces": {
       "format": "{name}",
@@ -36,7 +34,14 @@
     "custom/userhost": {
       "exec": "echo \"$USER@$(hostname)\"",
       "interval": 3600,
-      "format": "󰀄 {}"
+      "format": "󰀄 {}",
+      "tooltip": true
+    },
+    "custom/hostname": {
+      "exec": "hostname",
+      "interval": 3600,
+      "format": "󰒋 {}",
+      "tooltip": true
     },
     "clock": {
       "format": "🕒 {:%H:%M:%S  %d/%m/%Y}",
@@ -52,8 +57,8 @@
     "name": "bottom",
     "layer": "top",
     "position": "bottom",
-    "height": 30,
-    "margin": "0 12 8 12",
+    "height": 24,
+    "margin": "0 8 4 8",
     "modules-left": ["custom/wan", "custom/lan", "custom/tor", "custom/vpn"],
     "modules-center": ["hyprland/window"],
     "modules-right": ["cpu", "custom/cputemp", "custom/gpuusage", "custom/gputemp", "memory", "custom/swap", "disk#root", "disk#home"],
@@ -65,17 +70,17 @@
     "custom/cputemp": {
       "exec": "~/.config/waybar/scripts/cpu-temp.sh",
       "interval": 5,
-      "tooltip": false
+      "tooltip": true
     },
     "custom/gpuusage": {
       "exec": "~/.config/waybar/scripts/gpu-usage.sh",
       "interval": 3,
-      "tooltip": false
+      "tooltip": true
     },
     "custom/gputemp": {
       "exec": "~/.config/waybar/scripts/gpu-temp.sh",
       "interval": 5,
-      "tooltip": false
+      "tooltip": true
     },
     "memory": {
       "format": "󰍛 RAM: {percentage}%",
@@ -84,7 +89,7 @@
     "custom/swap": {
       "exec": "~/.config/waybar/scripts/swap.sh",
       "interval": 10,
-      "tooltip": false
+      "tooltip": true
     },
     "disk#root": {
       "format": "󰋊 /: {percentage_used}%",
@@ -103,22 +108,22 @@
     "custom/wan": {
       "exec": "~/.config/waybar/scripts/wan.sh",
       "interval": 10,
-      "tooltip": false
+      "tooltip": true
     },
     "custom/lan": {
       "exec": "~/.config/waybar/scripts/lan.sh",
       "interval": 10,
-      "tooltip": false
+      "tooltip": true
     },
     "custom/tor": {
       "exec": "~/.config/waybar/scripts/tor.sh",
       "interval": 15,
-      "tooltip": false
+      "tooltip": true
     },
     "custom/vpn": {
       "exec": "~/.config/waybar/scripts/vpn.sh",
       "interval": 15,
-      "tooltip": false
+      "tooltip": true
     }
   }
 ]
