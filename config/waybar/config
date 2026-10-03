@@ -5,9 +5,9 @@
     "position": "top",
     "height": 34,
     "margin": "8 12 0 12",
-    "modules-left": ["mpris", "hyprland/language", "custom/server", "custom/menu"],
+    "modules-left": ["custom/userhost", "clock", "clock#cet"],
     "modules-center": ["hyprland/workspaces"],
-    "modules-right": ["custom/userhost", "clock", "clock#cet"],
+    "modules-right": ["mpris", "hyprland/language", "custom/server", "custom/menu"],
 
     "mpris": {
       "format": "{player_icon} {title} - {artist}",
@@ -54,9 +54,9 @@
     "position": "bottom",
     "height": 30,
     "margin": "0 12 8 12",
-    "modules-left": ["cpu", "custom/cputemp", "custom/gpuusage", "custom/gputemp", "memory", "custom/swap", "disk#root", "disk#home"],
+    "modules-left": ["custom/wan", "custom/lan", "custom/tor", "custom/vpn"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["custom/wan", "custom/lan", "custom/tor", "custom/vpn"],
+    "modules-right": ["cpu", "custom/cputemp", "custom/gpuusage", "custom/gputemp", "memory", "custom/swap", "disk#root", "disk#home"],
 
     "cpu": {
       "format": "󰻠 CPU: {usage}%",
