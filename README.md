@@ -34,8 +34,10 @@ Después recarga: `hyprctl reload && pkill waybar; waybar &`
 
 | Barra     | Contenido |
 |-----------|-----------|
-| **Top**   | Workspaces, ventana activa, reloj, red, audio, batería, tray |
-| **Bottom**| CPU, RAM, temperatura, disco, brillo, ◈ NEURAL LINK: ONLINE ◈, updates, kernel |
+| **Top**   | Izquierda: multimedia (mpris), layout de teclado, estado del servidor, menú. Centro: workspaces. Derecha: user@hostname, hora local, hora CET |
+| **Bottom**| Izquierda: CPU uso/temp, GPU uso/temp, RAM, SWAP, disco / y ~. Centro: ventana activa (Xwindow). Derecha: WAN, LAN, TOR, VPN |
+
+Scripts personalizados en `config/waybar/scripts/` (servidor con `SERVER_HOST` opcional, WAN/LAN/TOR/VPN, temperaturas vía sysfs AMD, SWAP, GPU).
 
 ## Personalización rápida
 

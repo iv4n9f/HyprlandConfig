@@ -39,24 +39,20 @@
   color: #00e5ff;
 }
 
-#window, #clock, #network, #pulseaudio, #battery,
-#cpu, #memory, #temperature, #disk, #backlight, #tray,
-#custom-ai, #custom-kernel, #custom-updates {
+#window, #clock, #mpris, #hyprland-language,
+#custom-userhost, #custom-server, #custom-menu,
+#cpu, #memory, #disk, #custom-cputemp, #custom-gpuusage,
+#custom-gputemp, #custom-swap, #custom-wan, #custom-lan,
+#custom-tor, #custom-vpn {
   padding: 0 10px;
   margin: 4px 2px;
   color: #00ff9f;
 }
 
+#custom-menu { color: #00e5ff; font-weight: bold; }
+#custom-userhost { color: #8be9fd; }
+
 #clock { color: #00e5ff; font-weight: bold; }
 
-#custom-ai {
-  color: #00e5ff;
-  border: 1px dashed rgba(0, 229, 255, 0.5);
-}
-
-#battery.warning { color: #ffb86c; }
-#battery.critical { color: #ff5555; }
-
-#temperature.critical { color: #ff5555; }
-
-#tray { padding: 0 6px; }
+#custom-tor { color: #bd93f9; }
+#custom-vpn { color: #8be9fd; }

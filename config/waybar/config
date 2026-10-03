@@ -5,42 +5,47 @@
     "position": "top",
     "height": 34,
     "margin": "8 12 0 12",
-    "modules-left": ["hyprland/workspaces", "hyprland/window"],
-    "modules-center": ["clock"],
-    "modules-right": ["network", "pulseaudio", "battery", "tray"],
+    "modules-left": ["mpris", "hyprland/language", "custom/server", "custom/menu"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": ["custom/userhost", "clock", "clock#cet"],
+
+    "mpris": {
+      "format": "{player_icon} {title} - {artist}",
+      "format-paused": "⏸ {title} - {artist}",
+      "max-length": 40
+    },
+    "hyprland/language": {
+      "format": "󰌌 {}",
+      "format-en": "󰌌 en",
+      "format-es": "󰌌 es"
+    },
+    "custom/server": {
+      "exec": "~/.config/waybar/scripts/server.sh",
+      "interval": 30,
+      "tooltip": false
+    },
+    "custom/menu": {
+      "format": "󰀻 MENU",
+      "on-click": "hyprlauncher",
+      "tooltip": false
+    },
     "hyprland/workspaces": {
       "format": "{name}",
       "on-click": "activate"
     },
-    "hyprland/window": {
-      "max-length": 40,
-      "separate-outputs": true
+    "custom/userhost": {
+      "exec": "echo \"$USER@$(hostname)\"",
+      "interval": 3600,
+      "format": "󰀄 {}"
     },
     "clock": {
-      "format": "{:%H:%M:%S}",
-      "tooltip-format": "<big>{:%Y-%m-%d}</big>\n<tt>{calendar}</tt>"
+      "format": "🕒 {:%H:%M:%S  %d/%m/%Y}",
+      "tooltip-format": "Hora local"
     },
-    "network": {
-      "format-wifi": "󰤨 {signalStrength}%",
-      "format-ethernet": "󰈀 {ipaddr}",
-      "format-disconnected": "󰤭 offline",
-      "tooltip-format": "{ifname}: {ipaddr}"
-    },
-    "pulseaudio": {
-      "format": "{icon} {volume}%",
-      "format-muted": "󰝟 muted",
-      "format-icons": { "default": ["", "", ""] },
-      "on-click": "pavucontrol"
-    },
-    "battery": {
-      "format": "{icon} {capacity}%",
-      "format-charging": "󰂄 {capacity}%",
-      "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰁹"],
-      "states": { "warning": 30, "critical": 15 }
-    },
-    "tray": {
-      "icon-size": 16,
-      "spacing": 8
+    "clock#cet": {
+      "timezone": "Europe/Madrid",
+      "format": "🌐 {:%H:%M  %d/%m} CET",
+      "tooltip-format": "Hora CET (Madrid)"
     }
   },
   {
@@ -49,44 +54,71 @@
     "position": "bottom",
     "height": 30,
     "margin": "0 12 8 12",
-    "modules-left": ["cpu", "memory", "temperature", "disk"],
-    "modules-center": ["custom/ai"],
-    "modules-right": ["backlight", "custom/updates", "custom/kernel"],
+    "modules-left": ["cpu", "custom/cputemp", "custom/gpuusage", "custom/gputemp", "memory", "custom/swap", "disk#root", "disk#home"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["custom/wan", "custom/lan", "custom/tor", "custom/vpn"],
+
     "cpu": {
-      "format": "󰍛 {usage}%",
+      "format": "󰻠 CPU: {usage}%",
       "interval": 2
     },
-    "memory": {
-      "format": "󰾆 {percentage}%",
-      "interval": 5
-    },
-    "temperature": {
-      "format": "󰔏 {temperatureC}°C",
-      "critical-threshold": 80
-    },
-    "disk": {
-      "format": "󰋊 {percentage_used}%",
-      "path": "/"
-    },
-    "backlight": {
-      "format": "󰃠 {percent}%",
-      "on-scroll-up": "brightnessctl s 5%+",
-      "on-scroll-down": "brightnessctl s 5%-"
-    },
-    "custom/ai": {
-      "format": "◈ NEURAL LINK: ONLINE ◈",
+    "custom/cputemp": {
+      "exec": "~/.config/waybar/scripts/cpu-temp.sh",
+      "interval": 5,
       "tooltip": false
     },
-    "custom/kernel": {
-      "exec": "uname -r",
-      "format": "󰌽 {}",
-      "interval": 3600
+    "custom/gpuusage": {
+      "exec": "~/.config/waybar/scripts/gpu-usage.sh",
+      "interval": 3,
+      "tooltip": false
     },
-    "custom/updates": {
-      "exec": "checkupdates | wc -l",
-      "format": "󰚰 {}",
-      "interval": 3600,
-      "signal": 8
+    "custom/gputemp": {
+      "exec": "~/.config/waybar/scripts/gpu-temp.sh",
+      "interval": 5,
+      "tooltip": false
+    },
+    "memory": {
+      "format": "󰍛 RAM: {percentage}%",
+      "interval": 5
+    },
+    "custom/swap": {
+      "exec": "~/.config/waybar/scripts/swap.sh",
+      "interval": 10,
+      "tooltip": false
+    },
+    "disk#root": {
+      "format": "󰋊 /: {percentage_used}%",
+      "path": "/",
+      "interval": 60
+    },
+    "disk#home": {
+      "format": "󰋊 ~: {percentage_used}%",
+      "path": "/home",
+      "interval": 60
+    },
+    "hyprland/window": {
+      "max-length": 60,
+      "separate-outputs": true
+    },
+    "custom/wan": {
+      "exec": "~/.config/waybar/scripts/wan.sh",
+      "interval": 10,
+      "tooltip": false
+    },
+    "custom/lan": {
+      "exec": "~/.config/waybar/scripts/lan.sh",
+      "interval": 10,
+      "tooltip": false
+    },
+    "custom/tor": {
+      "exec": "~/.config/waybar/scripts/tor.sh",
+      "interval": 15,
+      "tooltip": false
+    },
+    "custom/vpn": {
+      "exec": "~/.config/waybar/scripts/vpn.sh",
+      "interval": 15,
+      "tooltip": false
     }
   }
 ]
