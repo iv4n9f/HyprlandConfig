@@ -7,12 +7,19 @@
     "margin": "4 8 0 8",
     "modules-left": ["custom/userhost", "custom/hostname", "clock", "clock#cet"],
     "modules-center": ["hyprland/workspaces"],
-    "modules-right": ["mpris", "pulseaudio", "hyprland/language", "custom/server", "custom/menu"],
+    "modules-right": ["custom/media", "custom/sep", "pulseaudio", "custom/sep", "hyprland/language", "custom/sep", "custom/server", "custom/sep", "custom/menu"],
 
-    "mpris": {
-      "format": "{player_icon} {title} - {artist}",
-      "format-paused": "⏸ {title} - {artist}",
-      "max-length": 35
+    "custom/media": {
+      "exec": "~/.config/waybar/scripts/media.sh",
+      "interval": 2,
+      "on-click": "playerctl play-pause",
+      "on-double-click": "playerctl next",
+      "on-right-click": "playerctl previous",
+      "tooltip": false
+    },
+    "custom/sep": {
+      "format": "│",
+      "tooltip": false
     },
     "pulseaudio": {
       "format": "{icon}  {volume}%",
