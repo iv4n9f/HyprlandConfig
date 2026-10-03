@@ -44,6 +44,13 @@ cp -r "$SCRIPT_DIR/config/hypr"      "$HOME/.config/"
 cp -r "$SCRIPT_DIR/config/waybar"    "$HOME/.config/"
 cp -r "$SCRIPT_DIR/config/foot"      "$HOME/.config/"
 cp -r "$SCRIPT_DIR/config/fastfetch" "$HOME/.config/"
+cp -r "$SCRIPT_DIR/config/gtk-3.0"  "$HOME/.config/"
+cp -r "$SCRIPT_DIR/config/gtk-4.0"  "$HOME/.config/"
+
+# Fuente del sistema a 8px en GTK y gsettings (GNOME/Nautilus)
+gsettings set org.gnome.desktop.interface font-name 'JetBrainsMono Nerd Font 8' 2>/dev/null || true
+gsettings set org.gnome.desktop.interface document-font-name 'JetBrainsMono Nerd Font 8' 2>/dev/null || true
+gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrainsMono Nerd Font 8' 2>/dev/null || true
 
 # Bloque de prompt/aliases hacker en ~/.bashrc (sin duplicar)
 if ! grep -q "HYPRLAND HACKER CONFIG" "$HOME/.bashrc" 2>/dev/null; then
