@@ -1,0 +1,92 @@
+[
+  {
+    "name": "top",
+    "layer": "top",
+    "position": "top",
+    "height": 34,
+    "margin": "8 12 0 12",
+    "modules-left": ["hyprland/workspaces", "hyprland/window"],
+    "modules-center": ["clock"],
+    "modules-right": ["network", "pulseaudio", "battery", "tray"],
+    "hyprland/workspaces": {
+      "format": "{name}",
+      "on-click": "activate"
+    },
+    "hyprland/window": {
+      "max-length": 40,
+      "separate-outputs": true
+    },
+    "clock": {
+      "format": "{:%H:%M:%S}",
+      "tooltip-format": "<big>{:%Y-%m-%d}</big>\n<tt>{calendar}</tt>"
+    },
+    "network": {
+      "format-wifi": "󰤨 {signalStrength}%",
+      "format-ethernet": "󰈀 {ipaddr}",
+      "format-disconnected": "󰤭 offline",
+      "tooltip-format": "{ifname}: {ipaddr}"
+    },
+    "pulseaudio": {
+      "format": "{icon} {volume}%",
+      "format-muted": "󰝟 muted",
+      "format-icons": { "default": ["", "", ""] },
+      "on-click": "pavucontrol"
+    },
+    "battery": {
+      "format": "{icon} {capacity}%",
+      "format-charging": "󰂄 {capacity}%",
+      "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰁹"],
+      "states": { "warning": 30, "critical": 15 }
+    },
+    "tray": {
+      "icon-size": 16,
+      "spacing": 8
+    }
+  },
+  {
+    "name": "bottom",
+    "layer": "top",
+    "position": "bottom",
+    "height": 30,
+    "margin": "0 12 8 12",
+    "modules-left": ["cpu", "memory", "temperature", "disk"],
+    "modules-center": ["custom/ai"],
+    "modules-right": ["backlight", "custom/updates", "custom/kernel"],
+    "cpu": {
+      "format": "󰍛 {usage}%",
+      "interval": 2
+    },
+    "memory": {
+      "format": "󰾆 {percentage}%",
+      "interval": 5
+    },
+    "temperature": {
+      "format": "󰔏 {temperatureC}°C",
+      "critical-threshold": 80
+    },
+    "disk": {
+      "format": "󰋊 {percentage_used}%",
+      "path": "/"
+    },
+    "backlight": {
+      "format": "󰃠 {percent}%",
+      "on-scroll-up": "brightnessctl s 5%+",
+      "on-scroll-down": "brightnessctl s 5%-"
+    },
+    "custom/ai": {
+      "format": "◈ NEURAL LINK: ONLINE ◈",
+      "tooltip": false
+    },
+    "custom/kernel": {
+      "exec": "uname -r",
+      "format": "󰌽 {}",
+      "interval": 3600
+    },
+    "custom/updates": {
+      "exec": "checkupdates | wc -l",
+      "format": "󰚰 {}",
+      "interval": 3600,
+      "signal": 8
+    }
+  }
+]
