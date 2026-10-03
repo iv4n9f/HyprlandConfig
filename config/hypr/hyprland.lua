@@ -69,7 +69,7 @@ hl.config({
 
         blur = {
             enabled   = true,
-            size      = 3,
+            size      = 2,
             passes    = 1,
             vibrancy  = 0.17,
         },
@@ -200,24 +200,3 @@ hl.window_rule({
     move  = "20 monitor_h-120",
     float = true,
 })
-
--- Color del borde activo según la app (glow que cambia con el sistema activo)
-local appColors = {
-    firefox = {"rgba(ff5555ee)", "rgba(ff79c6ee)"},
-    foot    = {"rgba(00ff9fee)", "rgba(00e5ffee)"},
-    kitty   = {"rgba(00ff9fee)", "rgba(00e5ffee)"},
-    nautilus = {"rgba(ffb86cee)", "rgba(f1fa8cee)"},
-    waybar   = {"rgba(00e5ffee)", "rgba(8be9fdee)"},
-}
-local defaultBorder = {"rgba(00ff9fee)", "rgba(00e5ffee)"}
-
-local lastClass = ""
-hl.on("window.active", function()
-    local f = io.popen("hyprctl activewindow | awk -F': ' '/^class:/{print $2}'")
-    local cls = (f:read("*a") or ""):gsub("%s+", ""):lower()
-    f:close()
-    if cls == lastClass then return end
-    lastClass = cls
-    local c = appColors[cls] or defaultBorder
-    hl.exec_cmd(string.format("hyprctl keyword general:col.active_border '%s %s 45deg'", c[1], c[2]))
-end)
