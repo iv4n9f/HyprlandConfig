@@ -218,8 +218,10 @@ local appColors = {
 }
 local defaultBorder = {"rgba(00ff9fee)", "rgba(00e5ffee)"}
 
-hl.on("activewindow", function(args)
-    local cls = (args or ""):match("^([^,]*)"):lower()
+hl.on("window.active", function()
+    local f = io.popen("hyprctl activewindow | awk -F': ' '/^class:/{print $2}'")
+    local cls = (f:read("*a") or ""):gsub("%s+", ""):lower()
+    f:close()
     local c = appColors[cls] or defaultBorder
     hl.exec_cmd(string.format("hyprctl keyword general:col.active_border '%s %s 45deg'", c[1], c[2]))
 end)
