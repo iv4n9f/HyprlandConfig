@@ -32,13 +32,13 @@
       "on-click": "activate"
     },
     "custom/userhost": {
-      "exec": "echo \"$USER@$(hostname)\"",
+      "exec": "echo \"$USER@$(cat /etc/hostname)\"",
       "interval": 3600,
       "format": "󰀄 {}",
       "tooltip": true
     },
     "custom/hostname": {
-      "exec": "hostname",
+      "exec": "cat /etc/hostname",
       "interval": 3600,
       "format": "󰒋 {}",
       "tooltip": true
