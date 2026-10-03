@@ -2,7 +2,7 @@
 for f in /sys/class/drm/card*/device/hwmon/hwmon*/temp1_input; do
   [ -r "$f" ] || continue
   T=$(( $(cat "$f") / 1000 ))
-  TIP="---\nGPU TEMP MODULE\n---\nTEMP: ${T}°C\nDRIVER: amdgpu"
+  TIP="┌─ GPU TEMP ─┐\n│ TEMP  : ${T}°C\n│ DRIVER: amdgpu\n└────────────┘"
   echo "{\"text\": \"󰔏 GPU: ${T}°C\", \"tooltip\": \"$TIP\"}"
   exit 0
 done

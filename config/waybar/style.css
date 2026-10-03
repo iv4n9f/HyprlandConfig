@@ -6,6 +6,16 @@
   min-height: 0;
 }
 
+tooltip {
+  background: rgba(5, 8, 5, 0.97);
+  border: 1px solid rgba(0, 255, 159, 0.6);
+  border-radius: 10px;
+  padding: 10px 12px;
+  color: #00ff9f;
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-size: 8px;
+}
+
 #waybar {
   background: rgba(5, 8, 5, 0.97);
   color: #00ff9f;

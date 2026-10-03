@@ -6,9 +6,9 @@ for IF in wlan0 wlp*s* enp*s* eth0; do
     SSID=$(iw dev "$IF" link 2>/dev/null | awk -F': ' '/SSID/{print $2}')
     [ -z "${SSID:-}" ] && SSID="N/D"
     MAC=$(cat /sys/class/net/$IF/address)
-    TIP="---\nLAN MODULE\n---\nIFACE: $IF\nSSID: ${SSID}\nIP: ${IP:-?}\nMAC: $MAC"
+    TIP="┌─ LAN MODULE ─┐\n│ IFACE: $IF\n│ SSID : ${SSID}\n│ IP   : ${IP:-?}\n│ MAC  : $MAC\n└──────────────┘"
     echo "{\"text\": \"󰈀 LAN: UP\", \"tooltip\": \"$TIP\"}"
     exit 0
   fi
 done
-echo '{"text": "󰈀 LAN: DOWN", "tooltip": "---\nLAN MODULE\n---\nSin interfaz activa"}'
+echo '{"text": "󰈀 LAN: DOWN", "tooltip": "┌─ LAN MODULE ─┐\n│ STATUS: OFFLINE\n└──────────────┘"}'

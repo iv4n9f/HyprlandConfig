@@ -2,7 +2,7 @@
 for d in /sys/class/hwmon/hwmon*; do
   [ "$(cat "$d/name" 2>/dev/null)" = "k10temp" ] || continue
   T=$(( $(cat "$d/temp1_input") / 1000 ))
-  TIP="---\nCPU TEMP MODULE\n---\nPACKAGE: ${T}°C\nSENSOR: k10temp"
+  TIP="┌─ CPU TEMP ─┐\n│ PACKAGE: ${T}°C\n│ SENSOR : k10temp\n└────────────┘"
   echo "{\"text\": \"󰔏 CPU: ${T}°C\", \"tooltip\": \"$TIP\"}"
   exit 0
 done
