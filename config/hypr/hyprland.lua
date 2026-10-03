@@ -58,7 +58,7 @@ hl.config({
         rounding_power = 2,
 
         active_opacity   = 1.0,
-        inactive_opacity = 0.92,
+        inactive_opacity = 1.0,
 
         shadow = {
             enabled      = true,
@@ -69,9 +69,9 @@ hl.config({
 
         blur = {
             enabled   = true,
-            size      = 6,
-            passes    = 3,
-            vibrancy  = 0.2,
+            size      = 3,
+            passes    = 1,
+            vibrancy  = 0.17,
         },
     },
 
@@ -201,13 +201,6 @@ hl.window_rule({
     float = true,
 })
 
--- Waybar: blur + ignorezero para look glassmorphism hacker
-hl.layer_rule({
-    name  = "waybar-blur",
-    match = { namespace = "^waybar$" },
-    blur = true,
-})
-
 -- Color del borde activo según la app (glow que cambia con el sistema activo)
 local appColors = {
     firefox = {"rgba(ff5555ee)", "rgba(ff79c6ee)"},
@@ -218,10 +211,13 @@ local appColors = {
 }
 local defaultBorder = {"rgba(00ff9fee)", "rgba(00e5ffee)"}
 
+local lastClass = ""
 hl.on("window.active", function()
     local f = io.popen("hyprctl activewindow | awk -F': ' '/^class:/{print $2}'")
     local cls = (f:read("*a") or ""):gsub("%s+", ""):lower()
     f:close()
+    if cls == lastClass then return end
+    lastClass = cls
     local c = appColors[cls] or defaultBorder
     hl.exec_cmd(string.format("hyprctl keyword general:col.active_border '%s %s 45deg'", c[1], c[2]))
 end)
