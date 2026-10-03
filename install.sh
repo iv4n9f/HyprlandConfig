@@ -16,7 +16,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 command -v pacman >/dev/null || die "Este instalador requiere Arch-based (pacman)."
 
 # 2) Paquetes
-PKGS=(waybar foot fastfetch swaybg brightnessctl ttf-jetbrains-mono-nerd noto-fonts-emoji network-manager-applet pacman-contrib cmatrix)
+PKGS=(waybar foot fastfetch swaybg brightnessctl ttf-jetbrains-mono-nerd noto-fonts-emoji network-manager-applet pacman-contrib cmatrix playerctl pavucontrol)
 log "Instalando paquetes: ${PKGS[*]}"
 sudo pacman -S --needed "${PKGS[@]}"
 

@@ -62,9 +62,9 @@ hl.config({
 
         shadow = {
             enabled      = true,
-            range        = 12,
-            render_power = 3,
-            color        = 0x6600ff9f,
+            range        = 5,
+            render_power = 2,
+            color        = 0x2200ff9f,
         },
 
         blur = {
@@ -207,3 +207,19 @@ hl.layer_rule({
     match = { namespace = "^waybar$" },
     blur = true,
 })
+
+-- Color del borde activo según la app (glow que cambia con el sistema activo)
+local appColors = {
+    firefox = {"rgba(ff5555ee)", "rgba(ff79c6ee)"},
+    foot    = {"rgba(00ff9fee)", "rgba(00e5ffee)"},
+    kitty   = {"rgba(00ff9fee)", "rgba(00e5ffee)"},
+    nautilus = {"rgba(ffb86cee)", "rgba(f1fa8cee)"},
+    waybar   = {"rgba(00e5ffee)", "rgba(8be9fdee)"},
+}
+local defaultBorder = {"rgba(00ff9fee)", "rgba(00e5ffee)"}
+
+hl.on("activewindow", function(args)
+    local cls = (args or ""):match("^([^,]*)"):lower()
+    local c = appColors[cls] or defaultBorder
+    hl.exec_cmd(string.format("hyprctl keyword general:col.active_border '%s %s 45deg'", c[1], c[2]))
+end)

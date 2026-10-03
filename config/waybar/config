@@ -7,25 +7,31 @@
     "margin": "4 8 0 8",
     "modules-left": ["custom/userhost", "custom/hostname", "clock", "clock#cet"],
     "modules-center": ["hyprland/workspaces"],
-    "modules-right": ["mpris", "hyprland/language", "custom/server", "custom/menu"],
+    "modules-right": ["mpris", "pulseaudio", "hyprland/language", "custom/server", "custom/menu"],
 
     "mpris": {
       "format": "{player_icon} {title} - {artist}",
       "format-paused": "⏸ {title} - {artist}",
-      "max-length": 40
+      "max-length": 35
+    },
+    "pulseaudio": {
+      "format": "{icon}  {volume}%",
+      "format-muted": "󰝟  muted",
+      "format-icons": { "default": ["", "", ""] },
+      "on-click": "pavucontrol"
     },
     "hyprland/language": {
       "format": "󰌌 {short}"
     },
     "custom/server": {
       "exec": "~/.config/waybar/scripts/server.sh",
-      "interval": 30,
-      "tooltip": true
+      "return-type": "json",
+      "interval": 30
     },
     "custom/menu": {
       "format": "󰀻 MENU",
       "on-click": "hyprlauncher",
-      "tooltip": true
+      "tooltip-format": "Abrir menú de aplicaciones"
     },
     "hyprland/workspaces": {
       "format": "{name}",
@@ -34,23 +40,21 @@
     "custom/userhost": {
       "exec": "echo \"$USER@$(cat /etc/hostname)\"",
       "interval": 3600,
-      "format": "󰀄 {}",
-      "tooltip": true
+      "format": "󰀄 {}"
     },
     "custom/hostname": {
       "exec": "cat /etc/hostname",
       "interval": 3600,
-      "format": "󰒋 {}",
-      "tooltip": true
+      "format": "󰒋 {}"
     },
     "clock": {
       "format": "🕒 {:%H:%M:%S  %d/%m/%Y}",
-      "tooltip-format": "Hora local"
+      "tooltip-format": "Hora local del sistema"
     },
     "clock#cet": {
       "timezone": "Europe/Madrid",
       "format": "🌐 {:%H:%M  %d/%m} CET",
-      "tooltip-format": "Hora CET (Madrid)"
+      "tooltip-format": "Hora CET (Madrid, España)"
     }
   },
   {
@@ -65,65 +69,70 @@
 
     "cpu": {
       "format": "󰻠 CPU: {usage}%",
-      "interval": 2
+      "interval": 2,
+      "tooltip-format": "Uso de CPU\nCarga media: {{loadavg}}"
     },
     "custom/cputemp": {
       "exec": "~/.config/waybar/scripts/cpu-temp.sh",
-      "interval": 5,
-      "tooltip": true
+      "return-type": "json",
+      "interval": 5
     },
     "custom/gpuusage": {
       "exec": "~/.config/waybar/scripts/gpu-usage.sh",
-      "interval": 3,
-      "tooltip": true
+      "return-type": "json",
+      "interval": 3
     },
     "custom/gputemp": {
       "exec": "~/.config/waybar/scripts/gpu-temp.sh",
-      "interval": 5,
-      "tooltip": true
+      "return-type": "json",
+      "interval": 5
     },
     "memory": {
       "format": "󰍛 RAM: {percentage}%",
-      "interval": 5
+      "interval": 5,
+      "tooltip-format": "RAM\n{used} / {total} GiB"
     },
     "custom/swap": {
       "exec": "~/.config/waybar/scripts/swap.sh",
-      "interval": 10,
-      "tooltip": true
+      "return-type": "json",
+      "interval": 10
     },
     "disk#root": {
       "format": "󰋊 /: {percentage_used}%",
       "path": "/",
-      "interval": 60
+      "interval": 60,
+      "tooltip-format": "Disco raíz\n{used} / {total}"
     },
     "disk#home": {
       "format": "󰋊 ~: {percentage_used}%",
       "path": "/home",
-      "interval": 60
+      "interval": 60,
+      "tooltip-format": "Disco home\n{used} / {total}"
     },
     "hyprland/window": {
       "max-length": 60,
-      "separate-outputs": true
+      "separate-outputs": true,
+      "tooltip-format": "Ventana activa"
     },
     "custom/wan": {
       "exec": "~/.config/waybar/scripts/wan.sh",
-      "interval": 10,
-      "tooltip": true
+      "return-type": "json",
+      "interval": 10
     },
     "custom/lan": {
       "exec": "~/.config/waybar/scripts/lan.sh",
-      "interval": 10,
-      "tooltip": true
+      "return-type": "json",
+      "interval": 10
     },
     "custom/tor": {
       "exec": "~/.config/waybar/scripts/tor.sh",
-      "interval": 15,
-      "tooltip": true
+      "return-type": "json",
+      "interval": 15
     },
     "custom/vpn": {
       "exec": "~/.config/waybar/scripts/vpn.sh",
-      "interval": 15,
-      "tooltip": true
+      "return-type": "json",
+      "interval": 15
     }
   }
 ]
