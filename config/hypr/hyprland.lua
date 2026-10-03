@@ -23,7 +23,7 @@ local menu        = "hyprlauncher"
 -------------------
 hl.on("hyprland.start", function ()
     hl.exec_cmd("waybar")
-    hl.exec_cmd("swaybg -c '#050805'")
+    hl.exec_cmd("swaybg -c '#000000'")
     hl.exec_cmd("nm-applet --indicator")
 end)
 
